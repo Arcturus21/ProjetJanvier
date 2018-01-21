@@ -1,18 +1,22 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
+#include "CollisionTestClass.h"
+
 void clamp(sf::CircleShape& shape, sf::RenderWindow& window);
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 800), "Janvier");
-    sf::CircleShape shape(50.f);
-    shape.setFillColor(sf::Color::Green);
+
+
+    sf::RenderWindow window(sf::VideoMode(1200, 800), "Janvier");
+    //sf::CircleShape shape(50.f);
+    //shape.setFillColor(sf::Color::Green);
 
     while (window.isOpen())
     {
         sf::Event event;
-        while (window.pollEvent(event))
+        while (window.waitEvent(event))
         {
             if (event.type == sf::Event::Closed)
                 window.close();
@@ -20,14 +24,17 @@ int main()
             {
                 if(event.key.code == sf::Keyboard::Escape)
                     window.close();
+
+                if(event.key.code == sf::Keyboard::C)
+                    CollisionTestClass::testCollision(window);
             }
         }
 
-        shape.setPosition((sf::Vector2f)(sf::Mouse::getPosition(window))-sf::Vector2f(shape.getRadius(), shape.getRadius()));
+        /*shape.setPosition((sf::Vector2f)(sf::Mouse::getPosition(window))-sf::Vector2f(shape.getRadius(), shape.getRadius()));
         clamp(shape,window);
 
         window.clear();
-        window.draw(shape);
+        window.draw(shape);*/
         window.display();
     }
 
