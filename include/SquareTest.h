@@ -4,13 +4,15 @@
 #include <SFML/Graphics.hpp>
 #include "AABBCollider.h"
 
-class SquareTest : public sf::Drawable, public sf::Transformable
+class SquareTest : public sf::Drawable, public sf::Transformable, public AABBCollider
 {
     public:
         SquareTest(float x, float y, int w, int h);
         virtual ~SquareTest();
 
-
+        void setPosition(const sf::Vector2f& position){AABBCollider::SetX(position.x);
+                                                    AABBCollider::SetY(position.y);
+                                                    setPosition(position);};
 
     protected:
 
@@ -31,7 +33,6 @@ class SquareTest : public sf::Drawable, public sf::Transformable
 
     private:
         sf::VertexArray m_vertices;
-        AABBCollider _collider;
 };
 
 #endif // SQUARETEST_H

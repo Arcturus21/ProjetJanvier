@@ -4,11 +4,15 @@
 #include <SFML/Graphics.hpp>
 #include "CircleCollider.h"
 
-class CircleTest : public sf::Drawable, public sf::Transformable
+class CircleTest : public sf::Drawable, public sf::Transformable, public CircleCollider
 {
     public:
         CircleTest(float x, float y, float radius);
         virtual ~CircleTest();
+
+        void setPosition(const sf::Vector2f& position){CircleCollider::SetX(position.x);
+                                                    CircleCollider::SetY(position.y);
+                                                    setPosition(position);};
 
     protected:
 
@@ -29,7 +33,6 @@ class CircleTest : public sf::Drawable, public sf::Transformable
 
     private:
         sf::CircleShape m_vertices;
-        CircleCollider _collider;
 };
 
 #endif // CIRCLETEST_H
