@@ -1,4 +1,4 @@
-#include "ConvexPolygonCollider.h"
+#include "../include/ConvexPolygonCollider.h"
 
 ConvexPolygonCollider::ConvexPolygonCollider()
 {

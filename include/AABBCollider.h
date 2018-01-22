@@ -17,14 +17,28 @@ class AABBCollider : public Collider
         ///Test COLLISION
         bool Collision(float pointX, float pointY);
         bool Collision(Point& p);
+        bool Collision(SegmentCollider& c){return false;};
         bool Collision(AABBCollider& c);
         bool Collision(CircleCollider& c);
+        bool Collision(ConvexPolygonCollider& c){return false;};
 
         ///Utilitaire
         Point GetPointTopLeft(){return Point{_x,_y};};
         Point GetPointTopRight(){return Point{_x+_w,_y};};
         Point GetPointBottomLeft(){return Point{_x,_y+_h};};
         Point GetPointBottomRight(){return Point{_x+_w,_y+_h};};
+
+        AABBCollider* GetSurroundingAABB();
+
+        ///Getter&Setter
+        void SetX(float x){_x=x;};
+        float GetX(){return _x;};
+        void SetY(float y){_y=y;};
+        float GetY(){return _y;};
+        void SetW(float w){_w=w;};
+        float GetW(){return _w;};
+        void SetH(float h){_h=h;};
+        float GetH(){return _h;};
 
     protected:
 

@@ -17,16 +17,24 @@ class CircleCollider : public Collider
         virtual ~CircleCollider();
 
         ///Test COLLISION
-        bool Collision(float x, float y);       ///Collision avec un point
+        bool Collision(float x, float y);        ///Collision avec un point
         bool Collision(Point& p);
         bool Collision(CircleCollider& c);       ///Collision avec un cercle
-        bool Collision(Point& a, Point& b);       ///Collision avec une droite
+        bool Collision(Point& a, Point& b);      ///Collision avec une droite
         bool Collision(SegmentCollider& s);      ///Collision avec un segment
         bool Collision(AABBCollider& box);       ///Collision avec une AABBox
 
         ///Utilitaire
-        AABBCollider GetSurroundingAABB();
+        AABBCollider* GetSurroundingAABB();
         Point GetCenter(){return Point{_x,_y};};
+
+        ///Getter & Setter
+        void SetX(float x){_x=x;};
+        float GetX(){return _x;};
+        void SetY(float y){_y=y;};
+        float GetY(){return _y;};
+        void SetRadius(float radius){_radius=radius;};
+        float GetRadius(){return _radius;};
 
     protected:
 

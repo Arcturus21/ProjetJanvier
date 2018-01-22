@@ -1,4 +1,4 @@
-#include "SegmentCollider.h"
+#include "../include/SegmentCollider.h"
 
 SegmentCollider::SegmentCollider(float x1, float y1, float x2, float y2)
 {

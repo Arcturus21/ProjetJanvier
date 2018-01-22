@@ -17,13 +17,18 @@ class Collider
         virtual ~Collider();
 
         virtual bool Collision(Point& c)=0;
-        virtual bool Collision(SegmentCollider& c){};
-        virtual bool Collision(AABBCollider& c){};
-        virtual bool Collision(CircleCollider& c){};
-        virtual bool Collision(ConvexPolygonCollider& c){};
+        virtual bool Collision(SegmentCollider& c)=0;
+        virtual bool Collision(AABBCollider& c)=0;
+        virtual bool Collision(CircleCollider& c)=0;
+        virtual bool Collision(ConvexPolygonCollider& c){return false;};
 
+        ///Utilitaire
+        virtual AABBCollider* GetSurroundingAABB()=0;
+
+        ///Getter & Setter
         void SetTrigger(bool trigger){_isTrigger=trigger;};
         bool IsTrigger(){return _isTrigger;};
+
 
     protected:
 

@@ -1,4 +1,4 @@
-#include "CircleCollider.h"
+#include "../include/CircleCollider.h"
 
 CircleCollider::CircleCollider(float x, float y, float radius): _x(x),_y(y),_radius(radius)
 {
@@ -46,8 +46,8 @@ bool CircleCollider::Collision(Point& a, Point& b)
 
 bool CircleCollider::Collision(SegmentCollider& s)
 {
-    Point  a=s.getA(),
-            b=s.getB();
+    Point  a=s.GetA(),
+            b=s.GetB();
 
     if(!Collision(a,b)) ///On test si la droite portant le segment touche le cercle
         return false;
@@ -71,9 +71,11 @@ bool CircleCollider::Collision(SegmentCollider& s)
 
 bool CircleCollider::Collision(AABBCollider& box)
 {
-    AABBCollider surroudingBox=GetSurroundingAABB();
+    AABBCollider* surroudingBox=GetSurroundingAABB();
 
-    if(!surroudingBox.Collision(box))           ///Si les AABB entourant le cercle sont en collision
+    if(!surroudingBox)
+        return false;
+    if(!surroudingBox->Collision(box))           ///Si les AABB entourant le cercle sont en collision
         return false;
 
     Point tl=box.GetPointTopLeft(),
@@ -94,7 +96,8 @@ bool CircleCollider::Collision(AABBCollider& box)
             || MathLib::ProjectionOnSegment(GetCenter(), box.GetPointTopLeft(), box.GetPointTopRight());    ///Projection horizontale
 }
 
-AABBCollider CircleCollider::GetSurroundingAABB()
+AABBCollider* CircleCollider::GetSurroundingAABB()
 {
-    return AABBCollider(_x-_radius,_y-_radius,_radius+_radius,_radius+_radius);
+    AABBCollider* c = new AABBCollider(_x-_radius,_y-_radius,_radius+_radius,_radius+_radius);
+    return c;
 }

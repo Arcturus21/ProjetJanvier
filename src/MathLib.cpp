@@ -1,4 +1,4 @@
-#include "MathLib.h"
+#include "../include/MathLib.h"
 
 MathLib::MathLib()
 {

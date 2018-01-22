@@ -3,6 +3,9 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "../SquareTest.h"
+#include "../CircleTest.h"
+
 class CollisionTestClass
 {
     public:

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-#include "CollisionTestClass.h"
+#include "include/Test/CollisionTestClass.h"
 
 void clamp(sf::CircleShape& shape, sf::RenderWindow& window);
 
@@ -16,7 +16,7 @@ int main()
     while (window.isOpen())
     {
         sf::Event event;
-        while (window.waitEvent(event))
+        while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
                 window.close();

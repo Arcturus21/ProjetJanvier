@@ -15,8 +15,12 @@ class SegmentCollider : public Collider
         bool Collision(const SegmentCollider& S);
 
         ///Getter
-        Point getA(){return _a;};
-        Point getB(){return _b;};
+        Point GetA(){return _a;};
+        void SetA(float x, float y){_a=Point{x,y};};
+        void SetA(Point a){_a=a;};
+        Point GetB(){return _b;};
+        void SetB(float x, float y){_b=Point{x,y};};
+        void SetB(Point b){_b=b;};
 
     protected:
 

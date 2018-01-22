@@ -1,4 +1,4 @@
-#include "AABBCollider.h"
+#include "../include/AABBCollider.h"
 
 AABBCollider::AABBCollider(float x, float y, int w, int h) : _x(x), _y(y), _w(w), _h(h)
 {
@@ -32,4 +32,10 @@ bool AABBCollider::Collision(AABBCollider& c)
 bool AABBCollider::Collision(CircleCollider& c)
 {
     return c.Collision(*this);
+}
+
+AABBCollider* AABBCollider::GetSurroundingAABB()
+{
+    AABBCollider* c = new AABBCollider(_x,_y,_w,_h);
+    return c;
 }
