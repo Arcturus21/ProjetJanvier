@@ -13,6 +13,7 @@ class PointCollider : public Collider
         virtual ~PointCollider();
 
         bool Collision(Point& c);
+        bool Collision(PointCollider& c);
         bool Collision(SegmentCollider& c){return false;};
         bool Collision(AABBCollider& c);
         bool Collision(CircleCollider& c);
@@ -20,16 +21,17 @@ class PointCollider : public Collider
 
         ///Utilitaire
         AABBCollider* GetSurroundingAABB();
+        void SetPosition(float x, float y);
 
         ///Getter&Setter
-        Point GetPoint(){return _p;};
-        void SetPoint(float x, float y){_p=Point{x,y};};
-        void SetPoint(Point p){_p=p;};
+        Point GetPoint();
+        void SetPoint(float x, float y){_x=x;_y=y;};
+        void SetPoint(Point p){_x=p.x;_y=p.y;};
 
     protected:
 
     private:
-        Point _p;
+        float _x,_y;
 };
 
 #endif // POINTCOLLIDER_H

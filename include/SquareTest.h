@@ -10,9 +10,8 @@ class SquareTest : public sf::Drawable, public sf::Transformable, public AABBCol
         SquareTest(float x, float y, int w, int h);
         virtual ~SquareTest();
 
-        void setPosition(const sf::Vector2f& position){AABBCollider::SetX(position.x);
-                                                    AABBCollider::SetY(position.y);
-                                                    setPosition(position);};
+        void SetPosition(const sf::Vector2f& position);
+        void SetColor(sf::Color c);
 
     protected:
 

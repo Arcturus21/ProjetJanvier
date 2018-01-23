@@ -21,6 +21,11 @@ bool AABBCollider::Collision(Point& p)
     return Collision(p.x,p.y);
 }
 
+bool AABBCollider::Collision(PointCollider& c)
+{
+    return Collision(c.GetPoint().x,c.GetPoint().y);
+}
+
 bool AABBCollider::Collision(AABBCollider& c)
 {
     return !(c._x > _x+_w ||
@@ -38,4 +43,42 @@ AABBCollider* AABBCollider::GetSurroundingAABB()
 {
     AABBCollider* c = new AABBCollider(_x,_y,_w,_h);
     return c;
+}
+
+void AABBCollider::SetPosition(float x, float y)
+{
+    _x=x;
+    _y=y;
+}
+
+Point AABBCollider::GetPointTopLeft()
+{
+    Point p;
+    p.x=_x;
+    p.y=_y;
+    return p;
+}
+
+Point AABBCollider::GetPointTopRight()
+{
+    Point p;
+    p.x=_x+_w;
+    p.y=_y;
+    return p;
+}
+
+Point AABBCollider::GetPointBottomLeft()
+{
+    Point p;
+    p.x=_x;
+    p.y=_y+_h;
+    return p;
+}
+
+Point AABBCollider::GetPointBottomRight()
+{
+    Point p;
+    p.x=_x+_w;
+    p.y=_y+_h;
+    return p;
 }

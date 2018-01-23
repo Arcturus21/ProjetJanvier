@@ -7,6 +7,7 @@
 ///Collider library
 #include "Collider.h"
 
+#include "PointCollider.h"
 #include "AABBCollider.h"
 #include "SegmentCollider.h"
 
@@ -19,6 +20,7 @@ class CircleCollider : public Collider
         ///Test COLLISION
         bool Collision(float x, float y);        ///Collision avec un point
         bool Collision(Point& p);
+        bool Collision(PointCollider& c);
         bool Collision(CircleCollider& c);       ///Collision avec un cercle
         bool Collision(Point& a, Point& b);      ///Collision avec une droite
         bool Collision(SegmentCollider& s);      ///Collision avec un segment
@@ -26,7 +28,8 @@ class CircleCollider : public Collider
 
         ///Utilitaire
         AABBCollider* GetSurroundingAABB();
-        Point GetCenter(){return Point{_x,_y};};
+        Point GetCenter();
+        void SetPosition(float x, float y);
 
         ///Getter & Setter
         void SetX(float x){_x=x;};

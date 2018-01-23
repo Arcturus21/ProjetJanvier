@@ -1,10 +1,8 @@
 #include "PointCollider.h"
 
-PointCollider::PointCollider(float x,float y)
+PointCollider::PointCollider(float x,float y):_x(x),_y(y)
 {
     //ctor
-    _p.x=x;
-    _p.y=y;
 }
 
 PointCollider::~PointCollider()
@@ -14,26 +12,40 @@ PointCollider::~PointCollider()
 
 bool PointCollider::Collision(Point& c)
 {
-    return _p.x==c.x && _p.y==c.y;
+    return _x==c.x && _y==c.y;
 }
 
-/*bool PointCollider::Collision(SegmentCollider& c)
+bool PointCollider::Collision(PointCollider& c)
 {
-    return c.Collision(_p);
-}*/
+    return (_x==c._x) && (_y==c._y);
+}
 
 bool PointCollider::Collision(AABBCollider& c)
 {
-    return c.Collision(_p);
+    return c.Collision(_x,_y);
 }
 
 bool PointCollider::Collision(CircleCollider& c)
 {
-    return c.Collision(_p);
+    return c.Collision(_x,_y);
 }
 
 AABBCollider* PointCollider::GetSurroundingAABB()
 {
-    AABBCollider *c = new AABBCollider(_p.x, _p.y, 1,1);
+    AABBCollider *c = new AABBCollider(_x, _y, 1,1);
     return c;
+}
+
+void PointCollider::SetPosition(float x, float y)
+{
+    _x=x;
+    _y=y;
+}
+
+Point PointCollider::GetPoint()
+{
+    Point p;
+    p.x=_x;
+    p.y=_y;
+    return p;
 }

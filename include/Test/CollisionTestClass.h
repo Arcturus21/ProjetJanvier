@@ -5,6 +5,7 @@
 
 #include "../SquareTest.h"
 #include "../CircleTest.h"
+#include "../PointTest.h"
 
 class CollisionTestClass
 {

@@ -13,6 +13,8 @@ int main()
     //sf::CircleShape shape(50.f);
     //shape.setFillColor(sf::Color::Green);
 
+    CollisionTestClass::testCollision(window);
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -43,7 +45,7 @@ int main()
 
 void clamp(sf::CircleShape& shape, sf::RenderWindow& window)
 {
-    float xTemp,xDef,yTemp,yDef;
+    float xTemp,yTemp;
     xTemp=shape.getPosition().x;
     yTemp=shape.getPosition().y;
 

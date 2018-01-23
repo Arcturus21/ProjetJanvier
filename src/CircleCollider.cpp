@@ -20,6 +20,11 @@ bool CircleCollider::Collision(Point& p)
     return Collision(p.x,p.y);
 }
 
+bool CircleCollider::Collision(PointCollider& c)
+{
+    return Collision(c.GetPoint().x,c.GetPoint().y);
+}
+
 bool CircleCollider::Collision(CircleCollider& c)
 {
     return !(MathLib::SquareDistance(c._x, c._y, _x, _y) > (_radius+c._radius)*(_radius+c._radius));
@@ -100,4 +105,18 @@ AABBCollider* CircleCollider::GetSurroundingAABB()
 {
     AABBCollider* c = new AABBCollider(_x-_radius,_y-_radius,_radius+_radius,_radius+_radius);
     return c;
+}
+
+Point CircleCollider::GetCenter()
+{
+    Point a;
+    a.x=_x;
+    a.y=_y;
+    return a;
+}
+
+void CircleCollider::SetPosition(float x, float y)
+{
+    _x=x;
+    _y=y;
 }

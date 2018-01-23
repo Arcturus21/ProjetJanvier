@@ -5,6 +5,7 @@
 
 #include "MathLib.h"
 
+class PointCollider;
 class SegmentCollider;
 class AABBCollider;
 class CircleCollider;
@@ -17,6 +18,7 @@ class Collider
         virtual ~Collider();
 
         virtual bool Collision(Point& c)=0;
+        virtual bool Collision(PointCollider& c)=0;
         virtual bool Collision(SegmentCollider& c)=0;
         virtual bool Collision(AABBCollider& c)=0;
         virtual bool Collision(CircleCollider& c)=0;
@@ -24,6 +26,7 @@ class Collider
 
         ///Utilitaire
         virtual AABBCollider* GetSurroundingAABB()=0;
+        virtual void SetPosition(float x, float y)=0;
 
         ///Getter & Setter
         void SetTrigger(bool trigger){_isTrigger=trigger;};

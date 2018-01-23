@@ -17,13 +17,15 @@ CollisionTestClass::~CollisionTestClass()
 int CollisionTestClass::testCollision(sf::RenderWindow& window)
 {
     SquareTest sq(50,50,100,100);
-    CircleTest cr(200,200,75);
+    CircleTest cr(300,300,50);
 
-    vector<Collider*> listCollider;
-    listCollider.push_back(new SquareTest(0,0,10,20));
-    listCollider.push_back(new CircleTest(0,0,15));
+    AABBCollider* crAABB=cr.GetSurroundingAABB();
+    SquareTest crsq(crAABB->GetX(),crAABB->GetY(),crAABB->GetW(),crAABB->GetH());
+    delete crAABB;
 
-    int actualCollider=0;
+    //SquareTest colliderTest(0,0,50,50);
+    //CircleTest colliderTest(0,0,15);
+    PointTest colliderTest(0,0);
 
     while (window.isOpen())
     {
@@ -37,26 +39,35 @@ int CollisionTestClass::testCollision(sf::RenderWindow& window)
                 if(event.key.code == sf::Keyboard::Escape)
                     window.close();
             }
-            else if(event.type == sf::Event::MouseButtonPressed)
-            {
-                actualCollider = (actualCollider+1)%listCollider.size();
-            }
         }
 
-        //listCollider[actualCollider]->setPosition(sf::Mouse::getPosition()(window));
-        //listCollider[actualCollider]->Set(sf::Mouse::getPosition()(window));
+        sf::Vector2f mousePos=(sf::Vector2f)sf::Mouse::getPosition(window);
+        colliderTest.SetPosition(mousePos);
+
+        if(sq.Collision(colliderTest))
+            sq.SetColor(sf::Color::Green);
+        else
+            sq.SetColor(sf::Color::Red);
+        if(cr.Collision(colliderTest))
+            cr.SetColor(sf::Color::Green);
+        else
+            cr.SetColor(sf::Color::Red);
+
+        if(colliderTest.Collision(sq) || colliderTest.Collision(cr))
+            colliderTest.SetColor(sf::Color::Green);
+        else
+            colliderTest.SetColor(sf::Color::Red);
 
         window.clear();
 
         window.draw(sq);
         window.draw(cr);
+        window.draw(crsq);
+
+        window.draw(colliderTest);
 
         window.display();
     }
-
-    for(int i=0;i<listCollider.size();i++)
-        delete(listCollider[i]);
-
 
     return 0;
 }

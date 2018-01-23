@@ -1,18 +1,17 @@
-#ifndef CIRCLETEST_H
-#define CIRCLETEST_H
+#ifndef POINTTEST_H
+#define POINTTEST_H
 
 #include <SFML/Graphics.hpp>
-#include "CircleCollider.h"
+#include "PointCollider.h"
 
-class CircleTest : public sf::Drawable, public sf::Transformable, public CircleCollider
+class PointTest : public sf::Drawable, public sf::Transformable, public PointCollider
 {
     public:
-        CircleTest(float x, float y, float radius);
-        virtual ~CircleTest();
+        PointTest(float x, float y, float size=30);
+        virtual ~PointTest();
 
         void SetPosition(const sf::Vector2f& position);
         void SetColor(sf::Color c);
-
     protected:
 
     private:
@@ -31,7 +30,8 @@ class CircleTest : public sf::Drawable, public sf::Transformable, public CircleC
         }
 
     private:
-        sf::CircleShape m_vertices;
+        sf::VertexArray m_vertices;
+        float _size;
 };
 
-#endif // CIRCLETEST_H
+#endif // POINTTEST_H
