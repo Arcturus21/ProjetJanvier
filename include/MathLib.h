@@ -3,7 +3,10 @@
 
 #include <math.h>
 
-typedef struct Point
+#include "Point.h"
+#include "Vector.h"
+
+/*typedef struct Point
 {
     float x,y;
 }Point;
@@ -11,7 +14,7 @@ typedef struct Point
 typedef struct Vector
 {
     float x,y,z;
-}Vector;
+}Vector;*/
 
 class MathLib
 {
@@ -27,7 +30,7 @@ class MathLib
         static bool ProjectionOnSegment(const Point& C, const Point& A, const Point& B);
 
         ///Vector Function
-        static Vector NegativVector(const Vector& u);
+        //static Vector NegativVector(const Vector& u);
         static float SquareVectorNorm(const Vector& u);
         static float VectorNorm(const Vector& u);
         static float VectorDeterminant(const Vector& u, const Vector& v);    ///Produit vectoriel de u et v, renvoit la norme du vecteur produit (sa composante Z)

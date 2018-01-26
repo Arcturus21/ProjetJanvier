@@ -9,6 +9,7 @@ Point::~Point()
 {
     //dtor
 }
+
 bool operator==(Point const& a, Point const& b)
 {
     return a.x==b.x && a.y==b.y;
@@ -19,7 +20,7 @@ bool operator!=(Point const& a, Point const& b)
     return !(a==b);
 }
 
-bool operator-(Point const& a)
+Point operator-(Point const& a)
 {
     Point b;
     b.x=-a.x;
@@ -27,29 +28,31 @@ bool operator-(Point const& a)
     return b;
 }
 
-bool operator+(Point const& a, Point const& b)
+Point operator+(Point const& a, Point const& b)
 {
     Point r;
     r.x=a.x+b.x;
     r.y=a.y+b.y;
     return r;
 }
-/*
-bool operator+=(Point const& a, Point const& b)
-{
 
+void Point::operator+=(Point const& a)
+{
+    x+=a.x;
+    y+=a.y;
 }
-*/
-bool operator-(Point const& a, Point const& b)
+
+Point operator-(Point const& a, Point const& b)
 {
     Point r;
     r.x=a.x-b.x;
     r.y=a.y-b.y;
     return r;
 }
-/*
-bool operator-=(Point const& a, Point const& b)
-{
 
+void Point::operator-=(Point const& a)
+{
+    x-=a.x;
+    y-=a.y;
 }
-*/
+

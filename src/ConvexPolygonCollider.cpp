@@ -23,13 +23,9 @@ bool ConvexPolygonCollider::Collision(Point p)  ///Test si le point est toujours
         else
             B=_listPoint[i+1];      ///Sinon on relie au suivant
 
-        Vector D,T;
-        D.x = B.x - A.x;
-        D.y = B.y - A.y;
-        T.x = p.x - A.x;
-        T.y = p.y - A.y;
+        Vector D(A,B),T(A,p);
 
-        float d = MathLib::VectorDeterminant(D,T);
+        float d = Vector::Determinant(D,T);
         if(d<0)
             return false;   ///Si un point est à droite le point testé est en dehors du polygone
     }

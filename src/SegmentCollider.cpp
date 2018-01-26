@@ -16,17 +16,11 @@ SegmentCollider::~SegmentCollider()
 
 bool SegmentCollider::Collision(const Point& A, const Point& B)
 {
-    Vector Aa, Ab, AB;
-    AB.x = B.x-A.x;
-    AB.y = B.y-A.y;
-    Aa.x = _a.x-A.x;
-    Aa.y = _a.y-A.y;
-    Ab.x = _b.x-A.x;
-    Ab.y = _b.y-A.y;
+    Vector Aa(A,_a), Ab(A,_b), AB(A,B);
 
     ///VectorDeterminant équivaut au calcul du déterminant.
     ///Si les déterminants ont le même signe (produit positif), ils sont du même côté (pas de collision), sinon non.
-    return (MathLib::VectorDeterminant(AB,Ab)*MathLib::VectorDeterminant(AB,Aa)<0);
+    return (Vector::Determinant(AB,Ab)*Vector::Determinant(AB,Aa)<0);
 }
 
 /*bool SegmentCollider::Collision(float x, float y)

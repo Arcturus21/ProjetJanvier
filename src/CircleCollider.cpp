@@ -32,19 +32,15 @@ bool CircleCollider::Collision(CircleCollider& c)
 
 bool CircleCollider::Collision(Point& a, Point& b)
 {
-    Vector u;       ///Vecteur directionnel de la droite
-    u.x = b.x - a.x;
-    u.y = b.y - a.y;
+    Vector u(a,b);       ///Vecteur directionnel de la droite
 
-    Vector AC;          ///Vecteur directionnel de la droite centre-point de contact
-    AC.x = _x - a.x;
-    AC.y = _y - a.y;
+    Vector AC(a,Point(_x,_y));          ///Vecteur directionnel de la droite centre-point de contact
 
-    float numerator = MathLib::VectorDeterminant(u,AC);  ///Norme du vecteur v
+    float numerator = Vector::Determinant(u,AC);  ///Norme du vecteur v
     if(numerator < 0)
         numerator = -numerator; ///Valeur absolue du numérateur
 
-    float denominator = MathLib::VectorNorm(u);    ///Norme de U
+    float denominator = u.Norm();    ///Norme de U
     float CI = numerator/denominator;
     return (CI<_radius);
 }
@@ -57,7 +53,7 @@ bool CircleCollider::Collision(SegmentCollider& s)
     if(!Collision(a,b)) ///On test si la droite portant le segment touche le cercle
         return false;
 
-    Vector AB,AC,BC;
+    Vector AB(a,b),AC(a,Point(_x,_y)),BC(b,Point(_x,_y));
     AB.x = b.x-a.x; ///Vecteur du segment
     AB.y = b.y-a.y;
     AC.x = _x-a.x;  ///Vecteurs entre le segment et le centre du cercle
@@ -65,8 +61,8 @@ bool CircleCollider::Collision(SegmentCollider& s)
     BC.x = _x-b.x;
     BC.x = _y-b.y;
 
-    float pscal1 = MathLib::ScalarProduct(AB,AC);   ///Produit scalaire
-    float pscal2 = MathLib::ScalarProduct(MathLib::NegativVector(AB),BC);
+    float pscal1 = Vector::ScalarProduct(AB,AC);   ///Produit scalaire
+    float pscal2 = Vector::ScalarProduct(-AB,BC);
 
     if(pscal1>=0 && pscal2>=0)  ///Le segment travers le cercle de par en par
         return true;
