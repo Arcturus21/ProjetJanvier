@@ -4,17 +4,25 @@
 #include "MathLib.h"
 
 #include "Collider.h"
-
+#include "PointCollider.h"
+#include "AABBCollider.h"
+#include "CircleCollider.h"
 class SegmentCollider : public Collider
 {
     public:
         SegmentCollider(float x1, float y1, float x2, float y2);
         virtual ~SegmentCollider();
 
-        bool Collision(const Point& A, const Point& B) const;
-        bool Collision(const SegmentCollider& S);
-
+        ///Test COLLISION
+        bool Collision(float x, float y){return false;};        ///Collision avec un point
+        bool Collision(Point& p){return false;};
         bool Collision(PointCollider& c){return false;};
+        bool Collision(SegmentCollider& s);      ///Collision avec un segment
+        bool Collision(AABBCollider& box);       ///Collision avec une AABBox
+        bool Collision(CircleCollider& c);       ///Collision avec un cercle
+        bool Collision(ConvexPolygonCollider& c){return false;};
+
+        bool Collision(const Point& A, const Point& B);
 
         ///Getter
         Point GetA(){return _a;};

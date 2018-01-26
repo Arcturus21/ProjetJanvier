@@ -30,7 +30,7 @@ class MathLib
         static Vector NegativVector(const Vector& u);
         static float SquareVectorNorm(const Vector& u);
         static float VectorNorm(const Vector& u);
-        static float CrossProductNorm(const Vector& u, const Vector& v);    ///Produit vectoriel de u et v, renvoit la norme du vecteur produit (sa composante Z)
+        static float VectorDeterminant(const Vector& u, const Vector& v);    ///Produit vectoriel de u et v, renvoit la norme du vecteur produit (sa composante Z)
                                                                             ///Equivalent au déterminant
         static Vector CrossProduct(const Vector& u, const Vector& v);
         static float ScalarProduct(const Vector& u, const Vector& v);

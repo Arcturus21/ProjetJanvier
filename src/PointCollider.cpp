@@ -10,6 +10,11 @@ PointCollider::~PointCollider()
     //dtor
 }
 
+bool PointCollider::Collision(float pointX, float pointY)
+{
+    return _x==pointX && _y==pointY;
+}
+
 bool PointCollider::Collision(Point& c)
 {
     return _x==c.x && _y==c.y;

@@ -21,10 +21,12 @@ class CircleCollider : public Collider
         bool Collision(float x, float y);        ///Collision avec un point
         bool Collision(Point& p);
         bool Collision(PointCollider& c);
-        bool Collision(CircleCollider& c);       ///Collision avec un cercle
-        bool Collision(Point& a, Point& b);      ///Collision avec une droite
         bool Collision(SegmentCollider& s);      ///Collision avec un segment
         bool Collision(AABBCollider& box);       ///Collision avec une AABBox
+        bool Collision(CircleCollider& c);       ///Collision avec un cercle
+        bool Collision(ConvexPolygonCollider& c){return false;};
+
+        bool Collision(Point& a, Point& b);      ///Collision avec une droite
 
         ///Utilitaire
         AABBCollider* GetSurroundingAABB();

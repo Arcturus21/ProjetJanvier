@@ -40,7 +40,7 @@ bool CircleCollider::Collision(Point& a, Point& b)
     AC.x = _x - a.x;
     AC.y = _y - a.y;
 
-    float numerator = MathLib::CrossProductNorm(u,AC);  ///Norme du vecteur v
+    float numerator = MathLib::VectorDeterminant(u,AC);  ///Norme du vecteur v
     if(numerator < 0)
         numerator = -numerator; ///Valeur absolue du numérateur
 

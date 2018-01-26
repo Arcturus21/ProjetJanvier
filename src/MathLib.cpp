@@ -12,7 +12,11 @@ MathLib::~MathLib()
 
 Vector MathLib::NegativVector(const Vector& u)
 {
-    return Vector{-u.x,-u.y,-u.z};
+    Vector r;
+    r.x = -u.x;
+    r.y = -u.y;
+    r.z = -u.z;
+    return r;
 }
 
 float MathLib::SquareDistance(float x1, float y1, float x2, float y2)
@@ -35,14 +39,18 @@ float MathLib::SquareVectorNorm(const Vector& u)
     return u.x*u.x+u.y*u.y;
 }
 
-float MathLib::CrossProductNorm(const Vector& u, const Vector& v)
+float MathLib::VectorDeterminant(const Vector& u, const Vector& v)
 {
     return (u.x*v.y)-(u.y*v.x);
 }
 
 Vector MathLib::CrossProduct(const Vector& u, const Vector& v)
 {
-    return Vector{0,0,CrossProductNorm(u,v)};
+    Vector r;
+    r.x = 0;
+    r.y = 0;
+    r.z = VectorDeterminant(u,v);
+    return r;
 }
 
 int MathLib::Round(float value)

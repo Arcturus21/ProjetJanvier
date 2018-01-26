@@ -12,6 +12,7 @@ class PointCollider : public Collider
         PointCollider(float x=0,float y=0);
         virtual ~PointCollider();
 
+        bool Collision(float pointX, float pointY);
         bool Collision(Point& c);
         bool Collision(PointCollider& c);
         bool Collision(SegmentCollider& c){return false;};

@@ -17,6 +17,7 @@ class Collider
         Collider();
         virtual ~Collider();
 
+        virtual bool Collision(float pointX, float pointY)=0;
         virtual bool Collision(Point& c)=0;
         virtual bool Collision(PointCollider& c)=0;
         virtual bool Collision(SegmentCollider& c)=0;
