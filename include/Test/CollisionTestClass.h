@@ -6,6 +6,7 @@
 #include "../SquareTest.h"
 #include "../CircleTest.h"
 #include "../PointTest.h"
+#include "../ConvexPolygonTest.h"
 
 class CollisionTestClass
 {

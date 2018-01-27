@@ -1,6 +1,6 @@
 #include "Point.h"
 
-Point::Point(float coordX, float coordY)
+Point::Point(float coordX, float coordY):x(coordX),y(coordY)
 {
     //ctor
 }

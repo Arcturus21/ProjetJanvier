@@ -35,6 +35,11 @@ bool PointCollider::Collision(CircleCollider& c)
     return c.Collision(_x,_y);
 }
 
+bool PointCollider::Collision(ConvexPolygonCollider& c)
+{
+    return c.Collision(*this);
+}
+
 AABBCollider* PointCollider::GetSurroundingAABB()
 {
     AABBCollider *c = new AABBCollider(_x, _y, 1,1);

@@ -10,7 +10,15 @@ ConvexPolygonCollider::~ConvexPolygonCollider()
     //dtor
 }
 
-bool ConvexPolygonCollider::Collision(Point p)  ///Test si le point est toujours à gauche des points du polygone
+bool ConvexPolygonCollider::Collision(float pointX, float pointY)
+{
+    Point p;
+    p.x=pointX;
+    p.y=pointY;
+    return Collision(p);
+}
+
+bool ConvexPolygonCollider::Collision(Point& p)  ///Test si le point est toujours à gauche des points du polygone
 {
     unsigned int i;
     for(i=0; i<_listPoint.size();i++)
@@ -30,4 +38,10 @@ bool ConvexPolygonCollider::Collision(Point p)  ///Test si le point est toujours
             return false;   ///Si un point est à droite le point testé est en dehors du polygone
     }
     return true;    ///Tous les points sont à gauche : le point testé est dans le polygone
+}
+
+bool ConvexPolygonCollider::Collision(PointCollider& c)
+{
+    Point p=c.GetPoint();
+    return Collision(p);
 }

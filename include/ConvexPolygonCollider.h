@@ -17,7 +17,16 @@ class ConvexPolygonCollider : public Collider
         ConvexPolygonCollider(const std::vector<Point>& listPoint);
         virtual ~ConvexPolygonCollider();
 
-        bool Collision(Point p);
+        bool Collision(float pointX, float pointY);
+        bool Collision(Point& p);
+        bool Collision(PointCollider& c);
+        bool Collision(SegmentCollider& c){return false;};
+        bool Collision(AABBCollider& c){return false;};
+        bool Collision(CircleCollider& c){return false;};
+        bool Collision(ConvexPolygonCollider& c){return false;};
+
+        AABBCollider* GetSurroundingAABB(){return NULL;};
+        void SetPosition(float x, float y){};
 
     protected:
 

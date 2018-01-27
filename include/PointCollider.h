@@ -5,6 +5,7 @@
 #include "AABBCollider.h"
 #include "SegmentCollider.h"
 #include "CircleCollider.h"
+#include "ConvexPolygonCollider.h"
 
 class PointCollider : public Collider
 {
@@ -18,7 +19,7 @@ class PointCollider : public Collider
         bool Collision(SegmentCollider& c){return false;};
         bool Collision(AABBCollider& c);
         bool Collision(CircleCollider& c);
-        bool Collision(ConvexPolygonCollider& c){return false;};
+        bool Collision(ConvexPolygonCollider& c);
 
         ///Utilitaire
         AABBCollider* GetSurroundingAABB();
