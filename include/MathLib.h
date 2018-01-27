@@ -6,15 +6,7 @@
 #include "Point.h"
 #include "Vector.h"
 
-/*typedef struct Point
-{
-    float x,y;
-}Point;
-
-typedef struct Vector
-{
-    float x,y,z;
-}Vector;*/
+#define PI 3.14159265
 
 class MathLib
 {
@@ -28,6 +20,10 @@ class MathLib
         static int Round(float value);
 
         static bool ProjectionOnSegment(const Point& C, const Point& A, const Point& B);
+
+        ///Conversion Function
+        static double RadToDegree(double angle);
+        static double DegreeToRad(double angle);
 
         ///Vector Function
         //static Vector NegativVector(const Vector& u);

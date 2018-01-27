@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "include/Test/CollisionTestClass.h"
+#include "include/TurretGame/TurretGame.h"
 
 void clamp(sf::CircleShape& shape, sf::RenderWindow& window);
 
@@ -13,7 +14,8 @@ int main()
     //sf::CircleShape shape(50.f);
     //shape.setFillColor(sf::Color::Green);
 
-    CollisionTestClass::testCollision(window);
+    //CollisionTestClass::testCollision(window);
+    TurretGame::Game(window);
 
     while (window.isOpen())
     {

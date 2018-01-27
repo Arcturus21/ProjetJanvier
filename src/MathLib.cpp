@@ -21,44 +21,6 @@ float MathLib::Distance(float x1, float y1, float x2, float y2)
     return sqrt(SquareDistance(x1,y1,x2,y2));
 }
 
-/*
-Vector MathLib::NegativVector(const Vector& u)
-{
-    Vector r;
-    r.x = -u.x;
-    r.y = -u.y;
-    r.z = -u.z;
-    return r;
-}
-float MathLib::VectorNorm(const Vector& u)
-{
-    return sqrt(VectorNorm(u));
-}
-
-float MathLib::SquareVectorNorm(const Vector& u)
-{
-    return u.x*u.x+u.y*u.y;
-}
-
-float MathLib::VectorDeterminant(const Vector& u, const Vector& v)
-{
-    return (u.x*v.y)-(u.y*v.x);
-}
-
-Vector MathLib::CrossProduct(const Vector& u, const Vector& v)
-{
-    Vector r;
-    r.x = 0;
-    r.y = 0;
-    r.z = VectorDeterminant(u,v);
-    return r;
-}
-
-float MathLib::ScalarProduct(const Vector& u, const Vector& v)
-{
-    return (u.x*v.x)+(u.y*v.y);
-}*/
-
 int MathLib::Round(float value)
 {
     return int(value+0.5);
@@ -79,4 +41,14 @@ bool MathLib::ProjectionOnSegment(const Point& C, const Point& A, const Point& B
     s1 = Vector::ScalarProduct(AC,AB);
     s2 = Vector::ScalarProduct(BC,AB);
     return s1*s2<=0;
+}
+
+double MathLib::RadToDegree(double angle)
+{
+    return angle*180/PI;
+}
+
+double MathLib::DegreeToRad(double angle)
+{
+    return angle*PI/180;
 }
