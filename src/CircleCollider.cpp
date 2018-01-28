@@ -54,12 +54,12 @@ bool CircleCollider::Collision(SegmentCollider& s)
         return false;
 
     Vector AB(a,b),AC(a,Point(_x,_y)),BC(b,Point(_x,_y));
-    AB.x = b.x-a.x; ///Vecteur du segment
-    AB.y = b.y-a.y;
-    AC.x = _x-a.x;  ///Vecteurs entre le segment et le centre du cercle
-    AC.x = _y-a.y;
-    BC.x = _x-b.x;
-    BC.x = _y-b.y;
+    /*AB.x = b.X()-a.X(); ///Vecteur du segment
+    AB.y = b.Y()-a.Y();
+    AC.x = _x-a.X();  ///Vecteurs entre le segment et le centre du cercle
+    AC.x = _y-a.Y();
+    BC.x = _x-b.X();
+    BC.x = _y-b.Y();*/
 
     float pscal1 = Vector::ScalarProduct(AB,AC);   ///Produit scalaire
     float pscal2 = Vector::ScalarProduct(-AB,BC);

@@ -20,6 +20,10 @@ class Turret : public sf::Drawable, public sf::Transformable, public Object
 
         const CircleCollider& GetCollider() const;
 
+        void RotateTo(float angle=0);
+
+        float Slerp(float angle, float step);
+
     protected:
 
     private:
@@ -39,6 +43,7 @@ class Turret : public sf::Drawable, public sf::Transformable, public Object
         }
 
     private:
+
         sf::CircleShape _turretBase;
         sf::RectangleShape _gun;
 
@@ -46,6 +51,7 @@ class Turret : public sf::Drawable, public sf::Transformable, public Object
 
         ///Constante
         float _rotateSpeed;
+        float _angleToReach;
         float _shootingDelay;
         float _reloadDelay;
         float _elapsedTime;

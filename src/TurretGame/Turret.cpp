@@ -2,8 +2,10 @@
 
 #define TURRET_RADIUS 30
 
+using namespace std;
+
 Turret::Turret(float posX, float posY) : Object("Turret"), _turretBase(TURRET_RADIUS), _gun(sf::Vector2f(50,20)), _collider(posX+TURRET_RADIUS,posY+TURRET_RADIUS,TURRET_RADIUS),
-        _rotateSpeed(0.05), _shootingDelay(0.2), _reloadDelay(2), _elapsedTime(1000), _cardrigeSize(10), _nbBulletLeft(10), _state(idle)
+    _rotateSpeed(150), _shootingDelay(0.2), _reloadDelay(2), _elapsedTime(1000), _cardrigeSize(30), _nbBulletLeft(10), _state(idle)
 {
     //ctor
     setOrigin(_turretBase.getRadius(),_turretBase.getRadius());
@@ -40,14 +42,8 @@ void Turret::Update(float elapsedTime)
         }
     }
 
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-        rotate(-_rotateSpeed);
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-        rotate(_rotateSpeed);
-
-
-    std::cout << _nbBulletLeft << '/' << _cardrigeSize << std::endl;
+    if(_angleToReach!=getRotation())
+        rotate(Slerp(_angleToReach, _rotateSpeed)*elapsedTime);
 }
 
 Bullet* Turret::Fire()
@@ -77,4 +73,25 @@ Bullet* Turret::Fire()
 const CircleCollider& Turret::GetCollider() const
 {
     return _collider;
+}
+
+void Turret::RotateTo(float angle)
+{
+    _angleToReach=angle;
+}
+
+float Turret::Slerp(float angle, float step)
+{
+    float angleToDo=angle-getRotation();
+    angleToDo=MathLib::ClampAngle(angleToDo,-180,180);
+
+    if(angleToDo<0 && -angleToDo>step)
+    {
+        angleToDo=-step;
+    }
+    else if(angleToDo>0 && angleToDo>step)
+    {
+        angleToDo=step;
+    }
+    return angleToDo;
 }

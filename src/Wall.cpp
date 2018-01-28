@@ -1,9 +1,9 @@
 #include "Wall.h"
 
-Wall::Wall(float posX, float posY, int w, int h) : Object("Wall"), _shape(sf::Vector2f(50,20)), _collider(posX,posY,w,h)
+Wall::Wall(float posX, float posY, int w, int h) : Object("Wall"), _shape(sf::Vector2f(w,h)), _collider(posX,posY,w,h)
 {
     //ctor
-    _shape.setSize(sf::Vector2f(w,h));
+    setPosition(posX,posY);
 }
 
 Wall::~Wall()
