@@ -43,7 +43,21 @@ void Turret::Update(float elapsedTime)
     }
 
     if(_angleToReach!=getRotation())
-        rotate(Slerp(_angleToReach, _rotateSpeed)*elapsedTime);
+    {
+        float angleToDo=Slerp(_angleToReach, _rotateSpeed);
+        /*if(angleToDo<-_rotateSpeed||angleToDo>_rotateSpeed)
+            rotate(angleToDo*elapsedTime);*/
+        /*else if(_rotateSpeed*_rotateSpeed*elapsedTime>_angleToReach*_angleToReach)
+            rotate(angleToDo*elapsedTime);*/
+        if(angleToDo<-0.01)
+            rotate(-_rotateSpeed*elapsedTime);
+        else if(angleToDo>0.01)
+            rotate(_rotateSpeed*elapsedTime);
+        else
+            setRotation(_angleToReach);
+        std::cout << angleToDo << std::endl;
+    }
+        //rotate(Slerp(_angleToReach, _rotateSpeed)*elapsedTime);
 }
 
 Bullet* Turret::Fire()
@@ -85,13 +99,13 @@ float Turret::Slerp(float angle, float step)
     float angleToDo=angle-getRotation();
     angleToDo=MathLib::ClampAngle(angleToDo,-180,180);
 
-    if(angleToDo<0 && -angleToDo>step)
+    /*if(angleToDo<-step)
     {
         angleToDo=-step;
     }
-    else if(angleToDo>0 && angleToDo>step)
+    else if(angleToDo>step)
     {
         angleToDo=step;
-    }
+    }*/
     return angleToDo;
 }
