@@ -35,6 +35,7 @@ class MathLib
         static float ScalarProduct(const Vector& u, const Vector& v);
 
         ///Trygonometrique Function
+        static float GetAngleToOrigin(const Point& origine, const Point& target);
         static float AcosAngleToRealAngle(float angle, const Point& O, const Point& p); ///renvoit la valeur réel de l'angle entre les vecteurs OP et Oo (o étant un vecteur sur l'axe des abscisses)
         static float ClampAngle(float angle, float min, float max);
 

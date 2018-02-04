@@ -12,6 +12,8 @@ class TurretGame
 
         static int Game(sf::RenderWindow& window);
 
+        static int TestTurret(sf::RenderWindow& window);
+
         static float GetMouseAngle(const Point& origine, const Point& mousePos);
 
     protected:

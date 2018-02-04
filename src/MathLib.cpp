@@ -53,6 +53,23 @@ double MathLib::DegreeToRad(double angle)
     return angle*PI/180;
 }
 
+float MathLib::GetAngleToOrigin(const Point& origine, const Point& target)
+{
+    if(origine!=target) ///Si la souris est sur le centre de la tourelle, pas la peine de tourner
+    {
+        Vector OA(origine,target);                                                ///Vecteur tourelle-souris
+        Vector OO(origine,Point(target.x, origine.y)); ///Vecteur tourelle-origine
+
+        float angle=0;                         ///Angle entre la souris et l'origine
+        if(OA.Norm()>0 && OA.Norm()>=OO.Norm())    ///On test si la norme du vecteur est nulle et si l'axe OA est bien l'hypothénuse du triangle souris-tourelle-origine (plante sinon)
+            angle=MathLib::RadToDegree(Vector::GetAngle(OO,OA));
+
+
+        return MathLib::AcosAngleToRealAngle(angle,origine,target);
+    }
+    return 0;
+}
+
 float MathLib::AcosAngleToRealAngle(float angle, const Point& O, const Point& p)
 {
     if(p.x >= O.x)        ///On change l'angle du repère (90-0-90-0) au repère (0-90-180-270)

@@ -55,7 +55,6 @@ void Turret::Update(float elapsedTime)
             rotate(_rotateSpeed*elapsedTime);
         else
             setRotation(_angleToReach);
-        std::cout << angleToDo << std::endl;
     }
         //rotate(Slerp(_angleToReach, _rotateSpeed)*elapsedTime);
 }
@@ -70,7 +69,8 @@ Bullet* Turret::Fire()
             return NULL;
     }
 
-    Bullet* b = new Bullet(getPosition(),getRotation());
+    sf::Vector2f posB = getPosition();
+    Bullet* b = new Bullet(posB,getRotation());
 
     if(_elapsedTime<_shootingDelay)
         return NULL;

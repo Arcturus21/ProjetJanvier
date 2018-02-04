@@ -16,6 +16,7 @@ int main()
 
     //CollisionTestClass::testCollision(window);
     TurretGame::Game(window);
+    //TurretGame::TestTurret(window);
 
     while (window.isOpen())
     {

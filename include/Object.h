@@ -5,7 +5,6 @@
 #include <string>
 
 #include "Updatable.h"
-#include "Collider.h"
 
 class Object : public Updatable
 {
@@ -14,8 +13,6 @@ class Object : public Updatable
         virtual ~Object();
 
         virtual void Update(float elapsedTime)=0;
-
-        ///virtual Collider& GetCollider() const=0;             ///Voir plus tard comment intégrer un système de récupération de collider générique
 
         void SetLibelle(std::string libelle){_libelle=libelle;};
         std::string GetLibelle(){return _libelle;};

@@ -16,7 +16,16 @@ class Enemy : public sf::Drawable, public sf::Transformable, public Object
 
         void Update(float elapsedTime);
 
+        void move(float offsetX, float offsetY);
+        void move(const sf::Vector2f& offset);
+        void setPosition(float posX, float posY);
+        void setPosition(const sf::Vector2f& pos);
+
         const CircleCollider& GetCollider() const;
+
+        Vector Lerp(const sf::Vector2f& cible, float step);
+
+        void SetCible(sf::Vector2f* cible);
 
     protected:
 
@@ -37,12 +46,25 @@ class Enemy : public sf::Drawable, public sf::Transformable, public Object
 
     private:
         sf::CircleShape _shape;
-        sf::Vector2f _cible;        ///A initialiser
+        sf::Vector2f* _cible;        ///A initialiser
 
         CircleCollider _collider;
 
-        ///Constante
+
+        int _lifePoint;
         float _speed;
+        float _recoveringTime;
+        float _elapsedTime;
+
+        typedef enum
+        {
+            idle,
+            walking,
+            touched,
+            recovering,
+            dead
+        }TurretState;
+        TurretState _state;
 };
 
 #endif // ENEMY_H
